@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.customer;
 
 public class Customer {
     private final Long id;
@@ -15,5 +15,13 @@ public class Customer {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
