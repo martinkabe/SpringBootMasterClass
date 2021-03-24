@@ -1,20 +1,23 @@
 package com.example.demo.customer;
 
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 public class CustomerService {
 
     private final CustomerRepo repo;
 
-    public CustomerService(@Qualifier("fake") CustomerRepo repo) {
+    public CustomerService(CustomerRepo repo) {
         this.repo = repo;
     }
 
-    public List<Customer> getCustomer() {
+    public List<Customer> getCustomers() {
         return repo.getCustomers();
+    }
+
+    public Customer getCustomer(Long id) {
+        return repo.getCustomer(id);
     }
 }

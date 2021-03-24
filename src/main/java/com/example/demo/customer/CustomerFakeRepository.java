@@ -1,11 +1,9 @@
 package com.example.demo.customer;
 
-import org.springframework.stereotype.Repository;
-
 import java.util.Arrays;
 import java.util.List;
 
-@Repository(value = "fake")
+
 public class CustomerFakeRepository implements CustomerRepo {
     @Override
     public List<Customer> getCustomers() {
@@ -14,5 +12,14 @@ public class CustomerFakeRepository implements CustomerRepo {
                 new Customer(2L, "Kingsey"),
                 new Customer(2L, "Rimta")
         );
+    }
+
+    @Override
+    public Customer getCustomer(Long id) {
+        return getCustomers()
+                .stream()
+                .filter(c -> c.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException("Customer with id " + id + " doesn't exist"));
     }
 }
