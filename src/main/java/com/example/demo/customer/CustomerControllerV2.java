@@ -1,5 +1,6 @@
 package com.example.demo.customer;
 
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,16 +10,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/customer")
-@Deprecated(since = "v1", forRemoval = true)
-public class CustomerController {
+@RequestMapping("api/v2/customer")
+public class CustomerControllerV2 {
 
     private final CustomerService customerService;
 
-    public CustomerController(CustomerService customerService) {
+    public CustomerControllerV2(CustomerService customerService) {
         this.customerService = customerService;
     }
 
@@ -33,7 +34,7 @@ public class CustomerController {
     }
 
     @PostMapping
-    public Customer createNewCustomer(@RequestBody Customer customer) {
+    public Customer createNewCustomer(@Valid @RequestBody Customer customer) {
         System.out.println("POST request ...");
         System.out.println(customer);
         return customer;
