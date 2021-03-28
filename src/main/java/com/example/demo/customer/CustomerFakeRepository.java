@@ -1,5 +1,7 @@
 package com.example.demo.customer;
 
+import com.example.demo.exception.NotFoundException;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,7 +12,7 @@ public class CustomerFakeRepository implements CustomerRepo {
         return Arrays.asList(
                 new Customer(1L, "Martin", "password1", "email1"),
                 new Customer(2L, "Kingsey", "password2", "email2"),
-                new Customer(2L, "Rimta", "password3", "email3")
+                new Customer(3L, "Rimta", "password3", "email3")
         );
     }
 
@@ -20,6 +22,6 @@ public class CustomerFakeRepository implements CustomerRepo {
                 .stream()
                 .filter(c -> c.getId() == id)
                 .findFirst()
-                .orElseThrow(() -> new IllegalStateException("Customer with id " + id + " doesn't exist"));
+                .orElseThrow(() -> new NotFoundException("Customer with id " + id + " doesn't exist"));
     }
 }

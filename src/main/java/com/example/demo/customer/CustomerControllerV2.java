@@ -1,5 +1,6 @@
 package com.example.demo.customer;
 
+import com.example.demo.exception.ApiRequestException;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +32,11 @@ public class CustomerControllerV2 {
     @GetMapping(value = "{customerId}")
     public Customer getCustomer(@PathVariable("customerId") Long id) {
         return customerService.getCustomer(id);
+    }
+
+    @GetMapping(value = "{customerId}/exception")
+    public Customer getCustomerException(@PathVariable("customerId") Long id) {
+        throw new ApiRequestException("ApiRequestException for customer " + id);
     }
 
     @PostMapping
